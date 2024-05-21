@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+
+apply plugin: 'com.google.ar.sceneform.plugin'
+
+android {
+    compileSdkVersion 34
+    defaultConfig {
+        applicationId "com.premdev.karcore"
+        minSdkVersion 24
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //Dependence for AR core sceneform
+    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.10.0"
+
+    implementation 'com.google.ar:core:1.30.0'
+}
+
+
+sceneform.asset('sampledata/smalllamp/model.obj',
+        'default',
+        'sampledata/smalllamp/model.sfa',
+        'src/main/assets/model')
+
+sceneform.asset('sampledata/model_two/LampPost.obj',
+        'default',
+        'sampledata/model_two/LampPost.sfa',
+        'src/main/assets/LampPost')
+
+sceneform.asset('sampledata/rocket/rocket.obj',
+        'default',
+        'sampledata/rocket/rocket.sfa',
+        'src/main/assets/rocket')
+
+
+/*
+sceneform.asset('sampledata/scene/scene.gltf',
+        'default',
+        'sampledata/scene/scene.gltf',
+        'src/main/assets/scene')*/
